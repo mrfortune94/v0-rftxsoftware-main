@@ -1,0 +1,13 @@
+# Ignore Python files - this is an Android project
+*.py
+*.pyc
+__pycache__/
+*.spec
+*.xml
+*.md
+main.py
+buildozer.spec
+
+# Keep only the 404 page
+!404.html
+!vercel.json
