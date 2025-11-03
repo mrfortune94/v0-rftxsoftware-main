@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- USB device filter for K+DCAN adapters -->
+<resources>
+    <!-- FTDI devices -->
+    <usb-device vendor-id="1027" product-id="24577" />
+    <usb-device vendor-id="1027" />
+    
+    <!-- CH340 devices -->
+    <usb-device vendor-id="6790" />
+    
+    <!-- Prolific devices -->
+    <usb-device vendor-id="1659" />
+    
+    <!-- Silicon Labs devices -->
+    <usb-device vendor-id="4292" />
+    
+    <!-- Generic USB serial devices -->
+    <usb-device class="255" subclass="255" protocol="255" />
+</resources>
