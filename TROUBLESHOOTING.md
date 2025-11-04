@@ -20,9 +20,11 @@ ERROR: Exception while downloading packages
   ```bash
   pip install --timeout=300 buildozer cython
   ```
-- **Use a mirror**: Configure pip to use a different mirror
+- **Use a mirror**: Configure pip to use a different mirror  
+  ⚠️ **Security Note**: Only use trusted mirrors. Alternative mirrors may not have the same security validation as official PyPI. Verify package integrity when possible.
   ```bash
-  pip install -i https://pypi.tuna.tsinghua.edu.cn/simple buildozer cython
+  # Example with an alternative mirror (use trusted sources only)
+  pip install -i https://pypi.org/simple buildozer cython
   ```
 
 ### 2. Duplicate Option Error

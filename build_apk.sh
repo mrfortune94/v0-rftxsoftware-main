@@ -33,10 +33,17 @@ fi
 # Install system dependencies
 echo ""
 echo "Installing system dependencies..."
-sudo apt update
-sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool \
-    pkg-config zlib1g-dev libncurses-dev cmake libffi-dev libssl-dev \
-    || echo "Warning: Some packages may already be installed"
+if ! sudo apt update; then
+    echo "Warning: apt update failed, continuing anyway..."
+fi
+
+# Install core dependencies
+if ! sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool \
+    pkg-config zlib1g-dev libncurses-dev cmake libffi-dev libssl-dev; then
+    echo "ERROR: Failed to install required system dependencies"
+    echo "Please install manually and try again"
+    exit 1
+fi
 
 # Install Python packages
 echo ""
@@ -75,7 +82,7 @@ echo ""
 buildozer android debug
 
 # Check if build succeeded
-if [ -f bin/*.apk ]; then
+if ls bin/*.apk 1> /dev/null 2>&1; then
     echo ""
     echo "================================================"
     echo "BUILD SUCCESSFUL!"

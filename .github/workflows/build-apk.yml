@@ -23,10 +23,12 @@ jobs:
     - name: Install system dependencies
       run: |
         sudo apt update
+        # Install dependencies, libtinfo5 may not be available on Ubuntu 24.04+
         sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool \
           pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev \
-          cmake libffi-dev libssl-dev || true
-        # Note: libtinfo5 may not be available on newer Ubuntu, but it's optional
+          cmake libffi-dev libssl-dev
+        # Try to install optional libtinfo5, ignore if not available
+        sudo apt install -y libtinfo5 || echo "libtinfo5 not available (optional)"
     
     - name: Install Python dependencies
       run: |
