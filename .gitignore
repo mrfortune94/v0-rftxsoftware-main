@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.pyc
+
+# Buildozer
+.buildozer/
+bin/
+*.apk
+*.aab
+
+# Build artifacts
+*.log
+build.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (for web components if any)
+node_modules/
+
+# Android
+local.properties

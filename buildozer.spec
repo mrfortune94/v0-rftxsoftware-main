@@ -43,7 +43,7 @@ android.minapi = 21
 android.sdk = 33
 
 # Android NDK version to use
-android.ndk = 25b
+android.ndk = 26.3.11579264
 
 # Android permissions
 android.permissions = INTERNET,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,USB_PERMISSION,ACCESS_FINE_LOCATION
@@ -82,8 +82,6 @@ android.services =
 android.wakelock = True
 
 # Android manifest XML additions
-android.manifest.intent_filters = 
-
 # USB device filter for K+DCAN adapters
 android.manifest.intent_filters = usb_device_filter.xml
 
