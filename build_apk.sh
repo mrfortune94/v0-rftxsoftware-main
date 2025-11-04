@@ -42,7 +42,7 @@ sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool \
 echo ""
 echo "Installing Buildozer and Cython..."
 pip3 install --user --upgrade pip
-pip3 install --user buildozer cython
+pip3 install --user -r requirements.txt
 
 # Add local bin to PATH
 export PATH=$PATH:~/.local/bin
