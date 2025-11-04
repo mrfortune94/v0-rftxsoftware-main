@@ -1,0 +1,15 @@
+# Python requirements for RFTX Tuning
+
+# Core dependencies for desktop application
+Kivy==2.3.0
+pyserial>=3.5
+requests>=2.28.0
+
+# Build dependencies (for Android APK)
+buildozer==1.5.0
+cython==0.29.33
+
+# Optional dependencies
+# Uncomment if needed for advanced features
+# numpy>=1.21.0
+# matplotlib>=3.5.0
