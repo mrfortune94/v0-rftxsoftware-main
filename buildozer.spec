@@ -16,7 +16,7 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,json
 
 # Application versioning
-version = 1.0
+version = 0.1
 
 # Application requirements
 requirements = python3,kivy==2.3.0,pyjnius,android
