@@ -23,12 +23,16 @@ jobs:
     - name: Install system dependencies
       run: |
         sudo apt update
-        # Install dependencies, libtinfo5 may not be available on Ubuntu 24.04+
+        # Install core dependencies
         sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool \
           pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev \
           cmake libffi-dev libssl-dev
-        # Try to install optional libtinfo5, ignore if not available
-        sudo apt install -y libtinfo5 || echo "libtinfo5 not available (optional)"
+        # Try to install optional libtinfo5 only if it exists in repos
+        if apt-cache show libtinfo5 >/dev/null 2>&1; then
+          sudo apt install -y libtinfo5
+        else
+          echo "libtinfo5 not available in repositories (optional, skipping)"
+        fi
     
     - name: Install Python dependencies
       run: |

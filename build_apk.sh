@@ -33,9 +33,20 @@ fi
 # Install system dependencies
 echo ""
 echo "Installing system dependencies..."
-if ! sudo apt update; then
-    echo "Warning: apt update failed, continuing anyway..."
-fi
+
+# Update package lists with retries
+MAX_RETRIES=3
+RETRY_COUNT=0
+while ! sudo apt update; do
+    RETRY_COUNT=$((RETRY_COUNT + 1))
+    if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
+        echo "ERROR: Failed to update package lists after $MAX_RETRIES attempts"
+        echo "Please check your internet connection and try again"
+        exit 1
+    fi
+    echo "Retry $RETRY_COUNT/$MAX_RETRIES: Updating package lists..."
+    sleep 2
+done
 
 # Install core dependencies
 if ! sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool \
