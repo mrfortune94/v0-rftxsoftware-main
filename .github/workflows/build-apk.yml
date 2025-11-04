@@ -13,10 +13,10 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     
     - name: Set up Python 3.9
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
     
@@ -36,13 +36,13 @@ jobs:
         pip3 install -r requirements.txt
     
     - name: Cache Buildozer global directory
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.buildozer
         key: ${{ runner.os }}-buildozer-${{ hashFiles('buildozer.spec') }}
     
     - name: Cache Buildozer local directory
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: .buildozer
         key: ${{ runner.os }}-buildozer-local-${{ hashFiles('buildozer.spec') }}
@@ -52,14 +52,14 @@ jobs:
         buildozer android debug
     
     - name: Upload APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: rftxtuning-debug-apk
         path: bin/*.apk
         
     - name: Upload build log on failure
       if: failure()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: buildozer-log
         path: .buildozer/android/platform/build-*/

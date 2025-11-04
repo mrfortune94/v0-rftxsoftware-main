@@ -49,6 +49,8 @@ fi
 echo ""
 echo "Installing Buildozer and Cython..."
 pip3 install --user --upgrade pip
+# Note: For enhanced security in production, consider using --require-hashes
+# or verifying package checksums from a known-good source
 pip3 install --user -r requirements.txt
 
 # Add local bin to PATH
