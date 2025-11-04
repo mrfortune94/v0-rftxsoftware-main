@@ -1,21 +1,30 @@
 # Building RFTX Tuning Android APK
 
+> **Quick Start**: For easier build methods, see [QUICK_START.md](QUICK_START.md)  
+> **Troubleshooting**: Having issues? Check [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+
+This document provides detailed manual build instructions. For most users, we recommend using:
+- **GitHub Actions** (automated cloud build) - see [QUICK_START.md](QUICK_START.md)
+- **Build Script** (`./build_apk.sh`) - one-command local build
+
 ## Prerequisites
 
 1. **Linux System** (Ubuntu 20.04+ recommended)
    - Buildozer works best on Linux
-   - For Windows/Mac, use WSL2 or a Linux VM
+   - For Windows/Mac, use WSL2 or a Linux VM, or use GitHub Actions
 
 2. **Install Dependencies**
    \`\`\`bash
    sudo apt update
-   sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+   sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses-dev cmake libffi-dev libssl-dev
    \`\`\`
+   Note: `libtinfo5` may not be available on Ubuntu 24.04, but it's optional
 
 3. **Install Buildozer**
    \`\`\`bash
-   pip3 install --user buildozer
-   pip3 install --user cython
+   pip3 install --user buildozer cython
+   # Add to PATH if needed
+   export PATH=$PATH:~/.local/bin
    \`\`\`
 
 4. **Install Android SDK/NDK**

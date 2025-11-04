@@ -1,0 +1,69 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.9'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt update
+        # Install core dependencies
+        sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool \
+          pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev \
+          cmake libffi-dev libssl-dev
+        # Try to install optional libtinfo5 only if it exists in repos
+        if apt-cache show libtinfo5 >/dev/null 2>&1; then
+          sudo apt install -y libtinfo5
+        else
+          echo "libtinfo5 not available in repositories (optional, skipping)"
+        fi
+    
+    - name: Install Python dependencies
+      run: |
+        pip3 install --upgrade pip
+        pip3 install -r requirements.txt
+    
+    - name: Cache Buildozer global directory
+      uses: actions/cache@v4
+      with:
+        path: ~/.buildozer
+        key: ${{ runner.os }}-buildozer-${{ hashFiles('buildozer.spec') }}
+    
+    - name: Cache Buildozer local directory
+      uses: actions/cache@v4
+      with:
+        path: .buildozer
+        key: ${{ runner.os }}-buildozer-local-${{ hashFiles('buildozer.spec') }}
+    
+    - name: Build APK with Buildozer
+      run: |
+        buildozer android debug
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: rftxtuning-debug-apk
+        path: bin/*.apk
+        
+    - name: Upload build log on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: buildozer-log
+        path: .buildozer/android/platform/build-*/
