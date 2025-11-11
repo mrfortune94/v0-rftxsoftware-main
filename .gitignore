@@ -32,6 +32,10 @@ Thumbs.db
 
 # Node (for web components if any)
 node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
 
 # Android
 local.properties

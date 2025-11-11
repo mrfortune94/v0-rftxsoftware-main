@@ -1,11 +1,3 @@
 {
-  "version": 2,
-  "builds": [],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "status": 404,
-      "dest": "/404.html"
-    }
-  ]
+  "version": 2
 }
