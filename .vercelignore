@@ -1,13 +1,10 @@
-# Ignore Python files - this is an Android project
+# Ignore Python files and Android build artifacts - these are for the Android app
 *.py
 *.pyc
 __pycache__/
-*.spec
-*.xml
-*.md
-main.py
 buildozer.spec
-
-# Keep only the 404 page
-!404.html
-!vercel.json
+.buildozer/
+bin/
+*.apk
+*.aab
+build.log
